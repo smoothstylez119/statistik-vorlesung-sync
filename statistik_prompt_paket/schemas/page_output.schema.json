@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CanonicalPageOutput",
+  "type": "object",
+  "required": [
+    "page_id",
+    "source_pdf",
+    "page_number",
+    "overall_confidence",
+    "raw_transcription",
+    "clean_study_version",
+    "uncertainties"
+  ],
+  "properties": {
+    "page_id": {
+      "type": "string"
+    },
+    "source_pdf": {
+      "type": "string"
+    },
+    "page_number": {
+      "type": "integer"
+    },
+    "detected_section": {
+      "type": "string"
+    },
+    "overall_confidence": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "requires_human_review": {
+      "type": "boolean"
+    },
+    "headings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "raw_transcription": {
+      "type": "string"
+    },
+    "clean_study_version": {
+      "type": "string"
+    },
+    "formulas": {
+      "type": "array"
+    },
+    "tables": {
+      "type": "array"
+    },
+    "diagrams": {
+      "type": "array"
+    },
+    "inferred_corrections": {
+      "type": "array"
+    },
+    "uncertainties": {
+      "type": "array"
+    }
+  }
+}

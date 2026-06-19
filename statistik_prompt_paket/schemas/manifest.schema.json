@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProjectManifest",
+  "type": "object",
+  "required": [
+    "project",
+    "source_pdfs",
+    "pages_total",
+    "pages_accepted",
+    "pages_manual_review_required",
+    "known_limitations"
+  ],
+  "properties": {
+    "project": {
+      "type": "string"
+    },
+    "source_pdfs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "pages_total": {
+      "type": "integer"
+    },
+    "pages_accepted": {
+      "type": "integer"
+    },
+    "pages_manual_review_required": {
+      "type": "integer"
+    },
+    "diagrams_reconstructed": {
+      "type": "integer"
+    },
+    "tables_extracted": {
+      "type": "integer"
+    },
+    "formulas_extracted": {
+      "type": "integer"
+    },
+    "known_limitations": {
+      "type": "array"
+    },
+    "rendering_recommendation": {
+      "type": "string"
+    }
+  }
+}

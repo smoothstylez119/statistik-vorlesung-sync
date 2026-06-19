@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PageReviewOutput",
+  "type": "object",
+  "required": [
+    "page_id",
+    "review_status",
+    "overall_risk",
+    "issues",
+    "recommended_action"
+  ],
+  "properties": {
+    "page_id": {
+      "type": "string"
+    },
+    "review_status": {
+      "enum": [
+        "pass",
+        "pass_with_minor_issues",
+        "needs_revision",
+        "needs_human_review"
+      ]
+    },
+    "overall_risk": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "issues": {
+      "type": "array"
+    },
+    "missing_content": {
+      "type": "array"
+    },
+    "formula_risks": {
+      "type": "array"
+    },
+    "table_risks": {
+      "type": "array"
+    },
+    "diagram_risks": {
+      "type": "array"
+    },
+    "recommended_action": {
+      "enum": [
+        "accept",
+        "revise_automatically",
+        "revise_then_review",
+        "manual_review"
+      ]
+    }
+  }
+}

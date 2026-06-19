@@ -1,0 +1,69 @@
+project:
+  name: statistik_vorlesung_digitalisierung
+  language: de-DE
+  source_type: handwritten_tablet_notes
+
+rendering:
+  page_image_dpi: 300
+  markdown_math: latex
+  final_pdf_engine_preferred: typst_or_pandoc
+  svg_output: true
+
+chunking:
+  extraction_pages_per_call: 1
+  review_pages_per_call: 1
+  consistency_pages_per_call: 5-8
+  summary_pages_per_call: 20-40
+
+models:
+  extractor_a:
+    type: vision
+    temperature: 0.0-0.2
+    prompt: prompts/02_PAGE_EXTRACTION_PROMPT.md
+  extractor_b_optional:
+    type: vision
+    temperature: 0.2-0.4
+    prompt: prompts/03_PAGE_EXTRACTION_PROMPT_VARIANT_B.md
+  reviewer:
+    type: vision
+    temperature: 0.0-0.1
+    prompt: prompts/04_PAGE_REVIEW_PROMPT.md
+  adjudicator:
+    type: vision
+    temperature: 0.0-0.1
+    prompt: prompts/05_PAGE_ADJUDICATION_PROMPT.md
+  table_validator:
+    type: text_or_vision
+    temperature: 0.0
+    prompt: prompts/06_TABLE_VALIDATION_PROMPT.md
+  diagram_reconstructor:
+    type: vision_or_text
+    temperature: 0.0-0.2
+    prompt: prompts/07_DIAGRAM_SVG_PROMPT.md
+  section_consistency:
+    type: text
+    temperature: 0.0-0.2
+    prompt: prompts/08_SECTION_CONSISTENCY_PROMPT.md
+  final_assembler:
+    type: text
+    temperature: 0.0-0.2
+    prompt: prompts/09_FINAL_ASSEMBLY_PROMPT.md
+
+quality:
+  fail_page_if_high_severity_issue: true
+  require_manual_review_for_low_confidence_formulas: true
+  require_manual_review_for_low_confidence_tables: true
+  preserve_visible_values_on_math_conflict: true
+  mark_inferred_corrections: true
+
+outputs:
+  page_markdown: page_outputs/page_XXX.canonical.md
+  page_json: page_outputs/page_XXX.canonical.json
+  reviews: reviews/page_XXX.review.json
+  diagrams: assets/diagrams/page_XXX_diagram_YYY.svg
+  final_script: final/full_script.md
+  final_pdf: final/full_script.pdf
+  formula_collection: final/formelsammlung.md
+  glossary: final/glossar.md
+  uncertainty_report: final/unsicherheiten.md
+  manifest: final/manifest.json
